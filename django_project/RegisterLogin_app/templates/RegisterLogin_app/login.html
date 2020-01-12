@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> Login
+        </title>
+    </head>
+            <body>
+                <form action="/login/" method="POST">
+                    {% csrf_token %}
+                <br><br>
+                <h2><center>Login</center></h2>
+                <table cellspacing='10' align="center">
+                    <tr>
+                        <td><b> Email Id: </b></td>
+                        <td><input type="text" placeholder="Email Id" name="email" required></td>
+                    </tr>
+                    <tr>
+                        <td><b> Password: </b></td>
+                        <td><input type="password" placeholder="Password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td><b> Confirm Password: </b></td>
+                        <td><input type="password" placeholder="Confirm Password" name="confirm_pass" required></td>
+                    </tr>
+                </table>
+                <br><br>
+                <center>
+                <b><button type="submit" value="submit" style="width:100px;height:30px;">Submit </button></b>
+                </center>
+               </form> 
+                    <h3 align="center">
+                        <font color="blue" face="chiller">
+                            {{ message }}
+                        </font>
+                    </h3>
+            </body>
+</html>
