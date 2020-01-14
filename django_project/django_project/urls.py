@@ -26,5 +26,5 @@ urlpatterns = [
 
     path('HR/',views.HR_view),
     path('employee/',views.employee_view),
-    path('cutomer/',views.cutomer_view)
+    path('cutomer/',views.customer_view)
 ]

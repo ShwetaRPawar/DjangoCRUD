@@ -7,7 +7,13 @@
     <body>
         <form action="/cutomer/" method="POST">
             {% csrf_token %}
-        <center>Hello Customer......<center>
+            <center>Hello Customer......<center>
+            <h1> Register User!! </h1>
+                {% for object in query_list %}
+                <li>
+                    {{object.name}} {{object.address}}
+                </li>
+                {% endfor %}
         </form>
     </body>
 </html>

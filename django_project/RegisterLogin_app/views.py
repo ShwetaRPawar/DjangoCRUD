@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django import forms
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 @csrf_exempt
 def home(request):
@@ -45,6 +46,7 @@ def register_view(req):
 
 
 # API for login
+@login_required()
 @csrf_exempt
 def login_view(request):
     flag=0
@@ -73,19 +75,37 @@ def login_view(request):
 
 
 # If role is HR then render to HR page
+@login_required() # API required login to database
 @csrf_exempt
 def HR_view(req):
-    return render(req,'RegisterLogin_app/HR.html')
+    print(req.user)
+    qs = Register.objects.filter(status='HR')
+    print(qs)
+    context = {
+        'query_list': qs
+    }
+    # Format of context is dictionary. Context are used to pass the value to the html page 
+    return render(req,'RegisterLogin_app/HR.html', context)
 
 
 # If role is employee then render to employee page
 @csrf_exempt
 def employee_view(req):
-    return render(req,'RegisterLogin_app/employee.html')
+    qs = Register.objects.filter(status='Employee')
+    print(qs)
+    context = {
+        'query_list': qs
+    }
+    return render(req,'RegisterLogin_app/employee.html', context)
 
 
 # If role is customer then render to customer page
 @csrf_exempt       
-def cutomer_view(req):
-    return render(req,'RegisterLogin_app/customer.html')
+def customer_view(req):
+    qs = Register.objects.filter(status='Customer')
+    print(qs)
+    context = {
+        'query_list': qs
+    }
+    return render(req,'RegisterLogin_app/customer.html', context)
 
